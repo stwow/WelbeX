@@ -5,13 +5,13 @@
 
         $.post('/sort/', data, function (result) {
                 document.querySelector('#table').innerHTML = result;
-                func();
+                bindAClick();
         })
     });
 
-    func();
+    bindAClick();
 
-    function  func(){
+    function  bindAClick(){
         $('.pagination').find('a').each(function(index) {
             $(this).click(function (e) {
                 e.preventDefault();
@@ -19,7 +19,7 @@
 
                 $.get('/sort/', data, function (result) {
                     document.querySelector('#table').innerHTML = result;
-                    func();
+                    bindAClick();
                 })
             })
         })
