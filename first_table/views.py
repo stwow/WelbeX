@@ -14,7 +14,6 @@ def index(request):
 
 
 def sorts(request):
-    result = qs
     if request.method == 'POST':
         if request.POST['condition'] == 'more':                                 # значение больше
             if not request.POST['value']:
@@ -47,9 +46,9 @@ def sorts(request):
         else:
             result = qs.all()
 
-        paginator = Paginator(result, 4)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        context = {'page_obj': page_obj}
-        return render(request, 'first_table/sort.html', context)
+    paginator = Paginator(result, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj}
+    return render(request, 'first_table/sort.html', context)
 
