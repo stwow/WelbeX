@@ -9,53 +9,53 @@
       crossorigin="anonymous"></script>
 </head>
 <body>
-<div id="table">
-<table border="2">
+    <div id="table">
+        <table border="2">
 
-    <tr><th> Дата </th> <th>Название</th> <th>Расстояние</th> <th>Количество</th></tr>
-{% for i in page_obj %}
-    <tr><td>{{i.date}}</td><td>{{i.title}}</td><td>{{i.distance}}</td><td>{{i.number}}</td></tr>
-{% endfor %}
+            <tr><th> Дата </th> <th>Название</th> <th>Расстояние</th> <th>Количество</th></tr>
+        {% for i in page_obj %}
+            <tr><td>{{i.date}}</td><td>{{i.title}}</td><td>{{i.distance}}</td><td>{{i.number}}</td></tr>
+        {% endfor %}
 
-</table>
+        </table>
 
-<br>
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+        <br>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; Первая</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
     </div>
 {% block content %}
-<form id="form" action="" method="post">
-<h2>Сортировка по: </h2>
-    {% csrf_token %}
-<select name = 'column'>
-  <option value = 'title' >Название</option>
-  <option value = 'distance' >Расстояние</option>
-  <option value = 'number' >Количество</option>
-</select>
-<select name = 'condition'>
-  <option value = 'more' >Больше</option>
-  <option value = 'less' >Меньше</option>
-  <option value = 'contains' >Содержит</option>
-  <option value = 'equals' >Равно</option>
-</select>
-    <input type="text" id = "user-input" name = "value" placeholder="По значению" autofocus="">
-    <button id='sender'>Сортировка</button>
-</form>
+    <form id="form" action="" method="post">
+    <h2>Сортировка по: </h2>
+        {% csrf_token %}
+        <select name = 'column'>
+              <option value = 'title' >Название</option>
+              <option value = 'distance' >Расстояние</option>
+              <option value = 'number' >Количество</option>
+        </select>
+        <select name = 'condition'>
+              <option value = 'more' >Больше</option>
+              <option value = 'less' >Меньше</option>
+              <option value = 'contains' >Содержит</option>
+              <option value = 'equals' >Равно</option>
+        </select>
+        <input type="text" id = "user-input" name = "value" placeholder="По значению" autofocus="">
+        <button id='sender'>Сортировать</button>
+    </form>
 
 {% endblock %}
     <script src="static/script.js"></script>
