@@ -1,19 +1,13 @@
 
     $("#sender").click(function (e) {
         e.preventDefault();
-        var input = $(this).val();
+        let data = $('#form').serialize();
 
-        $.ajax({
-            url: '/sort/',
-            method: 'POST',
-            data: $('#form').serialize(),
-            //dataType: 'json',
-            success: function (data) {
-                document.querySelector('#table').innerHTML = data;
+        $.post('/sort/', data, function (result) {
+                document.querySelector('#table').innerHTML = result;
                 func();
-            }
-          });
-        });
+        })
+    });
 
     func();
 
@@ -23,8 +17,8 @@
                 e.preventDefault();
                 let data = $(this).attr('href').slice(1);
 
-                $.get('/sort/', data, function (data) {
-                    document.querySelector('#table').innerHTML = data;
+                $.get('/sort/', data, function (result) {
+                    document.querySelector('#table').innerHTML = result;
                     func();
                 })
             })
