@@ -5,7 +5,6 @@ from django.core.paginator import Paginator
 qs = Table.objects.all()
 
 
-
 def index(request):
     paginator = Paginator(qs, 4)
     page_number = request.GET.get('page')

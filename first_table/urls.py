@@ -5,6 +5,6 @@ app_name = 'table'
 
 urlpatterns = [
     path('', index, name='index'),
-    path('sort/', sorts, name='get_response'),
+    path('sort/', sorts, name='sorts'),
 ]
 
