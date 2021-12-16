@@ -1,9 +1,10 @@
-from .views import index
-from django.urls import path, include
+from .views import index, sorts
+from django.urls import path
 
-app_name = 'tables'
+app_name = 'table'
 
 urlpatterns = [
     path('', index, name='index'),
+    path('sort/', sorts, name='get_response'),
 ]
 
