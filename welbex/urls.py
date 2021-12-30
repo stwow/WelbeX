@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('',include('first_table.urls')),
+    path('annot/',include('annot.urls')),
     path('admin/', admin.site.urls),
 ]
